@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#101513">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23101513'/%3E%3Cpath d='M7 24 13 8h4l-6 16zm9 0 6-16h4l-6 16z' fill='%23c0e67b'/%3E%3C/svg%3E">
+  <title>Last Light — The Wilds</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Last Light home"><span class="brand-mark"><i></i><i></i><i></i></span><span>EMBER<span class="brand-light">WATCH</span></span></a>
+      <div class="season-tag"><span class="tiny-dot"></span> LIVE SIMULATION <span class="season-divider">/</span> SEASON 04</div>
+      <button class="icon-button sound-toggle" aria-label="Toggle ambient sound" title="Sound off"><svg viewBox="0 0 24 24"><path d="M4 10v4h4l5 4V6l-5 4H4Z"/><path d="m17 9 4 6m0-6-4 6"/></svg></button>
+    </header>
+
+    <main>
+      <section class="intro-row">
+        <div><div class="eyebrow"><span>OBSERVATION DECK</span><span class="eyebrow-line"></span><span>NO. 0048</span></div><h1>The Wilds <span>are watching.</span></h1><p class="subtitle">Twenty strangers. One unforgiving frontier. No one is playing but them.</p></div>
+        <div class="round-state"><span class="state-pulse"></span><div><strong id="stateLabel">THE TRIAL IS LIVE</strong><small>ALLIANCES ARE TEMPORARY</small></div></div>
+      </section>
+
+      <section class="game-layout">
+        <div class="main-column">
+          <div class="world-frame" id="worldFrame">
+            <canvas id="game" aria-label="Side-view wilderness simulation. Tap a survivor to inspect them."></canvas>
+            <div class="world-vignette"></div>
+            <div class="world-topline"><div class="location-chip"><span class="location-icon">⌖</span><span id="biomeLabel">THE ASHEN FRONTIER</span></div><div class="live-chip"><span class="live-dot"></span> LIVE</div></div>
+            <div class="world-readout"><span>DAY <b id="dayNum">01</b></span><span class="readout-divider"></span><span id="weather">CLEAR SKIES</span></div>
+            <div class="world-bottomline"><div class="cam-label"><span class="cam-icon">◉</span> WIDE OBSERVER VIEW</div><div class="world-coordinate" id="coordLabel">SECTOR 01 — 06</div></div>
+            <div class="selection-card" id="selectionCard" hidden></div>
+          </div>
+          <div class="timeline-row">
+            <div class="timeline-caption"><span class="timeline-icon">◷</span><span id="clock">00:00</span><span class="timeline-sep">/</span><span class="muted">THE LAST ONE STANDING</span></div>
+            <div class="timeline-track"><div class="timeline-fill" id="timelineFill"></div><span class="timeline-marker"></span></div>
+            <div class="population-count"><span class="population-icon">♟</span><strong id="aliveCount">20</strong><span class="muted">/ 20</span></div>
+          </div>
+          <div class="control-row">
+            <div class="controls-left"><button class="control-button pause-button" id="pauseBtn"><span class="pause-glyph">Ⅱ</span><span>PAUSE</span></button><button class="control-button speed-button" id="speedBtn"><span class="speed-glyph">»</span><span id="speedLabel">1× SPEED</span></button><span class="controls-note"><span class="keycap">TAP</span> A SURVIVOR TO FOLLOW THEIR STORY</span></div>
+            <button class="restart-button" id="restartBtn"><svg viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0 1 4M20 4v7h-7"/></svg> NEW TRIAL</button>
+          </div>
+          <div class="mobile-feed" id="mobileFeed"></div>
+        </div>
+
+        <aside class="side-panel">
+          <section class="panel-block roster-block">
+            <div class="panel-heading"><div><div class="panel-kicker">THE LAST ONES</div><h2>Survivors <span class="heading-count" id="rosterCount">20</span></h2></div><button class="sort-button" id="sortBtn" aria-label="Sort survivors">↕ <span>RANK</span></button></div>
+            <div class="roster-list" id="rosterList"></div>
+            <div class="roster-foot"><span class="status-key"><i class="status-dot living"></i> IN THE GAME</span><span id="fallenCount">00 ELIMINATED</span></div>
+          </section>
+          <section class="panel-block field-block">
+            <div class="panel-heading compact"><div><div class="panel-kicker">FIELD REPORT</div><h2>What's happening</h2></div><span class="signal-mark">⌁</span></div>
+            <div class="event-list" id="eventList"></div>
+          </section>
+          <section class="supply-strip"><span class="supply-symbol">✳</span><div><strong>THE LAND IS ALIVE</strong><small>Scavenge · craft · survive</small></div><span class="supply-count" id="supplyCount">18<span> CACHE</span></span></section>
+        </aside>
+      </section>
+      <footer class="footnote"><span>AN UNSCRIPTED SIMULATION</span><span class="footnote-center">EVERY DECISION LEAVES A MARK</span><span>EMBERWATCH <b>©</b> 2025</span></footer>
+    </main>
+  </div>
+  <script src="game.js"></script>
+</body>
+</html>
