@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#101513" />
+  <title>AFTERHOURS — Range Simulator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Afterhours home"><span class="brand-mark">A<span>•</span></span><span class="brand-name">AFTER<span>HOURS</span><small>SIMULATION LAB / 07</small></span></a>
+      <div class="top-center"><span class="live-dot"></span> LIVE SESSION <span class="top-divider">/</span> <span id="sessionTime">00:00</span></div>
+      <div class="top-actions"><span class="status-pill"><i></i> SYSTEMS NOMINAL</span><button class="icon-btn" id="soundToggle" aria-label="Toggle sound" title="Toggle sound">♫</button><button class="icon-btn" id="resetBtn" aria-label="Reset session" title="Reset session">↺</button></div>
+    </header>
+    <main class="layout">
+      <section class="main-column">
+        <div class="eyebrow-row"><div><span class="eyebrow">TRAINING BAY 03</span><span class="eyebrow-sep">—</span><span class="eyebrow muted">KINETIC RESPONSE TEST</span></div><div class="range-state"><span class="live-dot"></span> RANGE ACTIVE</div></div>
+        <section class="stage-card">
+          <div class="stage-top"><div class="stage-label"><span class="stage-index">01</span><div><strong>REACTION CHAMBER</strong><small>SUBJECT A-07 <b>·</b> CALIBRATED</small></div></div><div class="stage-meta"><span>CAM 01 <i>●</i></span><span>REC <b>00:00</b></span><button id="fullscreenBtn" class="expand-btn" title="Fullscreen">⛶</button></div></div>
+          <div class="canvas-wrap" id="canvasWrap"><canvas id="scene" aria-label="Interactive training range. Tap or click to fire at the training dummy."></canvas><div class="scene-vignette"></div><div class="scene-hud hud-left"><span>SIMULATION ONLY</span><span>NON-LETHAL MODE</span></div><div class="scene-hud hud-right"><span id="aimReadout">X 50.0&nbsp;&nbsp; Y 50.0</span><span>CLICK / TAP TO FIRE</span></div><div class="impact-label" id="impactLabel">NICE SHOT</div><div class="crosshair" id="crosshair"><span></span></div><div class="stage-bottom"><span><i class="tiny-dot"></i> TARGET TRACKING</span><span>ZONE <b id="zoneReadout">—</b></span></div></div>
+          <div class="stage-foot"><span><span class="keycap">LMB</span> FIRE <span class="foot-dot">·</span> <span class="keycap">R</span> RELOAD <span class="foot-dot">·</span> <span class="keycap">1—5</span> SELECT</span><span class="foot-right">A PRACTICE SPACE, NOT A PERSON <span class="sparkle">✳</span></span></div>
+        </section>
+        <section class="metrics-row">
+          <article class="metric-card score-card"><div class="metric-heading">SESSION SCORE <span>↗</span></div><div class="metric-value" id="scoreValue">000000</div><div class="metric-sub"><span class="metric-live"></span> <span id="scoreSub">Ready when you are</span></div><div class="score-sparkline"><svg viewBox="0 0 180 38" preserveAspectRatio="none"><path d="M0 33 C15 30 18 31 30 26 S48 30 58 20 S76 28 88 16 S108 22 118 14 S138 22 148 9 S166 15 180 3"/></svg></div></article>
+          <article class="metric-card"><div class="metric-heading">ACCURACY <span class="metric-icon">◎</span></div><div class="metric-value"><span id="accuracyValue">—</span><small>%</small></div><div class="metric-sub" id="shotsValue">0 shots fired</div><div class="meter"><i id="accuracyMeter"></i></div></article>
+          <article class="metric-card"><div class="metric-heading">BEST STREAK <span class="metric-icon">✳</span></div><div class="metric-value"><span id="streakValue">0</span><small>×</small></div><div class="metric-sub">consecutive hits</div><div class="streak-dots" id="streakDots"><i></i><i></i><i></i><i></i><i></i></div></article>
+          <article class="metric-card reaction-card"><div class="metric-heading">LAST REACTION <span class="metric-icon">⌁</span></div><div class="reaction-value" id="reactionValue">Awaiting first shot<span>—</span></div><div class="metric-sub" id="reactionSub">Your range is ready</div><div class="reaction-wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></article>
+        </section>
+        <div class="bottom-note"><span>✳ &nbsp;Every hit is a little different. Keep experimenting.</span><span>BUILD 2.4.08 <b>·</b> LOCAL SIMULATION</span></div>
+      </section>
+      <aside class="arsenal-panel">
+        <div class="arsenal-head"><div><span class="eyebrow">YOUR LOADOUT</span><h1>THE <em>ARSENAL</em></h1></div><span class="weapon-count">15 <small>TOOLS</small></span></div>
+        <div class="arsenal-tabs"><button class="tab active" data-filter="all">ALL <span>15</span></button><button class="tab" data-filter="precision">PRECISION</button><button class="tab" data-filter="energy">ENERGY</button><button class="tab" data-filter="wildcard">WILDCARD</button></div>
+        <div class="weapon-list" id="weaponList" role="listbox" aria-label="Choose a training tool"></div>
+        <div class="selected-weapon" id="selectedWeapon"><div class="weapon-detail-top"><span class="eyebrow">EQUIPPED TOOL</span><span class="ready-tag"><i></i> READY</span></div><div class="equipped-name"><span id="weaponIcon">⌁</span><div><strong id="weaponName">Pulse Dart</strong><small id="weaponDesc">A gentle nudge with pinpoint control.</small></div></div><div class="weapon-stats"><div><span>IMPACT</span><div class="stat-track"><i id="impactStat"></i></div></div><div><span>RANGE</span><div class="stat-track"><i id="rangeStat"></i></div></div><div><span>PACE</span><div class="stat-track"><i id="paceStat"></i></div></div></div><div class="ammo-row"><div class="ammo"><span>CHARGE</span><strong id="ammoValue">08 <small>/ 08</small></strong></div><button class="reload-btn" id="reloadBtn"><span>↻</span> RELOAD <kbd>R</kbd></button></div></div>
+        <div class="arsenal-footer"><span><i class="tiny-dot"></i> 15 TOOLS ONLINE</span><span>SCROLL TO EXPLORE ↕</span></div>
+      </aside>
+    </main>
+    <div class="toast" id="toast" role="status"></div>
+    <footer class="mobile-footer"><span>SIMULATION SPACE</span><span>✳ &nbsp;PLAY NICE</span></footer>
+  </div>
+  <script src="game.js"></script>
+</body>
+</html>
